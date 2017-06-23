@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    padding: 5%;
+}
+
+a,
+span.glyphicon-pencil,
+.input-group-addon {
+    cursor: pointer;
+}
+
+textarea {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
+    height: 70%;
+}
+
+.navbar {
+    opacity: 0.95;
+}
+
+.dynheight {
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+.collapser:after {
+    font-family: "Glyphicons Halflings";
+    content: "\e114";
+    float: right;
+    margin-left: 15px;
+}
+
+
+/* Icon when the collapsible content is hidden */
+
+.collapser.collapsed:after {
+    content: "\e080";
+}
+
+data {
+    margin: 10%;
+}
+
+
+/*Custom scrollbar*/
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #AAA;
+    border-radius: 10px;
+    background-image: -webkit-linear-gradient(90deg, rgba(0, 0, 0, .2) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, .2) 50%, rgba(0, 0, 0, .2) 75%, transparent 75%, transparent)
+}

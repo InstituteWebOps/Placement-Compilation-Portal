@@ -1,0 +1,24 @@
+<div class="container alert alert-info alert-dismissable fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <kbd *ngFor="let tip of tips; let i = index">
+    <b>{{i+1}})</b> {{tip}}<br>
+  </kbd>
+</div>
+<br>
+<div>
+    <data *ngFor="let company of data, let n = index" [company]="company" [n]="n" class="panel-group"></data>
+    <div class="container row form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2">
+            <!--<button type="button" class="btn btn-primary btn-lg" (click)="addCompany(Cname.value)">Add company</button>-->
+        </div>
+        <div class="col-sm-6">
+            <!--<input type="text" class="form-control" #Cname>-->
+            <div class="input-group">
+                <input id="newComp" type="text" class="form-control" placeholder="Add New Company" (keyup.enter)="addCompany(Cname.value)" #Cname>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-plus" (click)="addCompany(Cname.value)"></i></span>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>

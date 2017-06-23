@@ -1,0 +1,79 @@
+<div class="panel panel-default">
+    <a href="#" class="close" aria-label="close" (click)="delCompany(n)" title="Delete data for {{company.Col0.Name}}">&times;</a>
+    <div class="well well-sm row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 form-group">
+            <h3 class="companyName">
+                <span class="label label-default">{{n+1}}</span>
+                <!--<a href="#" data-toggle="tooltip" data-placement="right" title="Double Click to Edit">-->
+                <span (dblclick)="editName()" title="Double click to edit">{{company.Col0.Name}}</span>
+                <!--</a>-->
+                <a data-toggle="collapse" href="#content{{n}}" class="collapser"></a>
+            </h3>
+            <input type="text" value="{{company.Col0.Tags}}" class="form-control">
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+    <div class="row panel-body dynheight" id="content{{n}}">
+        <div *ngFor="let col of company.Cols, let i = index" class="col-sm-3" id="datacol{{i}}">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-info">
+                    <h3 class="text-center" (dblclick)="editHeader(i)">{{col.ColHeader}}</h3>
+                </li>
+                <li *ngFor="let item of col.Items, let k = index" class="list-group-item">
+                    <ul class="list-group">
+                        <b class="list-group-item active"><span class="label label-info">
+                            {{k+1}}</span>  {{item.Header}}  
+                            <a (click)="editBox(i, k)" data-toggle="modal" data-target="#editBox"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="#" class="close" aria-label="close" (click)="delItem(i, k)" title="Delete box {{k+1}} of {{col.ColHeader}}">&times;</a></b>
+                        <li class="list-group-item" *ngFor="let point of item.List, let p = index">
+                            <span [ngClass]="{active: hvr}" (mouseenter)="hvr=true" (mouseleave)="hvr=false">{{point}}</span>
+                            <a href="#" class="close" aria-label="close" (click)="delPoint(i, k, p)" title="Delete point {{p+1}} of {{item.Header}}">&times;</a>
+                        </li>
+                        <li class=" list-group-item form-inline">
+                            <form (submit)="newPoint(i, k, newPointH.value)" class="row text-center">
+                                <input type="text" class="form-control" #newPointH>
+                                <button class="btn btn-info form-control btn-sm" type="submit" title="Add Point">+</button>
+                            </form>
+
+                            <div class="modal fade" id="editBox" role="dialog">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title form-inline">
+                                                Edit Note Box
+                                                <input type="textbox" value="{{modalv.header}}" class="form-control" #headerV> under {{modalv.parentCol}}
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Make changes and press Accept</p>
+                                            <textarea rows="{{modalv.list.length+1}}" #pointsV>{{modalv.points}}</textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class=" btn-group">
+                                                <button type="button" class="btn btn-success" (click)="acceptChanges(headerV.value, pointsV.value)" data-dismiss="modal">Accept</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="list-group-item form-inline">
+                    <form (submit)="newItem(i, newItemH.value)" class="row text-center">
+                        <input type="text " class="form-control" #newItemH>
+                        <button class="btn btn-primary btn-md" type="submit" title="Add Box">+</button>
+                    </form>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+</div>
