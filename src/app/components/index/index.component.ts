@@ -14,6 +14,10 @@ export class IndexComponent {
 
   data: Data[];
   tips: string[];
+  names: list[] = [];
+  company: string;
+
+
 
   constructor(private dataService: DataService) {
     this.tips = [
@@ -25,7 +29,32 @@ export class IndexComponent {
     this.dataService.getData().subscribe(data => {
       console.log(data);
       this.data = data;
+      for(var i=0;i<data.length;i++){
+        this.names.push({name: data[i].Col0.Name, show: false});
+      }
     })
+
+  }
+
+  search(data: any) {
+    if(this.company === '')
+    {
+      for(var i=0;i<this.names.length;i++){
+          this.names[i].show = false;
+      }
+    }
+    for (var i = 0; i < this.names.length; i++) {
+      for(var j=0; j<this.company.length; j++)
+      {
+        if(this.company[j].toUpperCase() === this.names[i].name[j].toUpperCase()){
+          this.names[i].show = false;
+        }
+        else{
+          this.names[i].show = true;
+          break;
+      }
+      }
+    }
   }
 
   addCompany(companyName: string) {
@@ -56,8 +85,18 @@ export class IndexComponent {
           ]
         }
       this.data.push(newCompany);
+      this.names.push({name: companyName, show: false});
     }
   }
+}
+class list {
+  name: string;
+  show: boolean;
+
+   constructor(){
+     this.name = '';
+     this.show = false;
+   }
 }
 interface Data {
   Col0: Col0,

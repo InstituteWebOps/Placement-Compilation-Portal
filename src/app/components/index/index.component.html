@@ -1,3 +1,16 @@
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+	<!--	<div class="navbar-header">
+			<a id="menu-toggle" href="#" class="navbar-toggle"><span class="sr-only">Toggle navigation</span></a>
+		</div>-->
+		<div id="sidebar-wrapper" class="sidebar-toggle"  style="overflow-y: scroll;">
+			<ul class="sidebar-nav">
+        <li><input type="text" (keyup)="search($event)" [(ngModel)]="company" name="searchstring" class="dropdown-toggle" data-toggle="dropdown" class="form-control" placeholder="Search"></li>
+        <li *ngFor="let name of names" [hidden] = "name.show"><a pageScroll href="#{{name.name}}">{{name.name}}</a></li>
+		  	</ul>
+		</div>
+  	</div>
+</nav>
 <div class="container alert alert-info alert-dismissable fade in">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <kbd *ngFor="let tip of tips; let i = index">
@@ -5,8 +18,9 @@
   </kbd>
 </div>
 <br>
-<div>
-    <data *ngFor="let company of data, let n = index" [company]="company" [n]="n" class="panel-group"></data>
+
+  <div>
+    <data *ngFor="let company of data, let n = index" [company]="company" [n]="n" class="panel-group" id="{{company.Col0.Name}}"></data>
     <div class="container row form-group">
         <div class="col-sm-2"></div>
         <div class="col-sm-2">
