@@ -9,12 +9,28 @@ import { Component } from '@angular/core';
 })
 
 export class HeaderComponent  {
-  User: string = "Aakarsh";
+  User: string = "Nobody";
   query: string;
-
+  loggedin: boolean;
   constructor(){
 
   }
 
+  logout() {
+   localStorage.removeItem('token');
+  }
+
+ isloggedin(): boolean{
+   if(localStorage.getItem('token')){
+     this.loggedin = true;
+     this.User = localStorage.getItem('token');
+     return true;
+   }
+   else
+   {
+     this.loggedin = false;
+     return false;
+   }
+ }
 
 }

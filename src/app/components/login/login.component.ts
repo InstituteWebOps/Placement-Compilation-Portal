@@ -26,7 +26,20 @@ export class LoginComponent {
 
     Login(event: any){
      event.preventDefault();
-     this.router.navigate(['/index']); //remove this if using authService
+     if(this.loginData.username === this.loginData.password)
+     {
+       if(this.loginData.username === 'akshay' || this.loginData.username === 'aakarsh' || this.loginData.username === 'jibin')
+        {
+          localStorage.setItem('token',this.loginData.username);
+          this.router.navigate(['/index']); //remove this if using authService
+        }
+      else{
+        this.errorMsg = "Invalid username or password";
+      }
+     }
+     else{
+       this.errorMsg = "Invalid username or password";
+     }
     /* this.authService.login(this.loginData).subscribe(data => {
        if(data.success)
        {
