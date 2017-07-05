@@ -23,6 +23,10 @@ const appRoutes: Routes = [
     {
         path: 'search',
         component: SearchComponent
+    },
+    {
+      path: '**',
+      redirectTo: ""
     }
 ]
 
