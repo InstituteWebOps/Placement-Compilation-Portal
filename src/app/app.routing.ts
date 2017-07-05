@@ -1,19 +1,24 @@
 import {ModuleWithProviders} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {Routes, RouterModule, CanActivate} from '@angular/router';
 
 import {IndexComponent} from './components/index/index.component';
 import {SearchComponent} from './components/search/search.component';
 import {LoginComponent} from './components/login/login.component';
+import {AuthService} from './services/auth/auth.service';
+import { LoginGuard } from './guards/login.guard';
+import { IndexGuard } from './guards/index.guard';
 
 
 const appRoutes: Routes = [
     {
         path: '',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [LoginGuard]
     },
     {
       path: 'index',
-      component: IndexComponent
+      component: IndexComponent,
+      canActivate: [IndexGuard]
     },
     {
         path: 'search',

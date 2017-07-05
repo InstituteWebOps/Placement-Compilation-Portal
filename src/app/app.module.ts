@@ -11,12 +11,14 @@ import { DataComponent } from './components/data/data.component';
 import { SearchComponent } from './components/search/search.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth/auth.service';
+import { LoginGuard } from './guards/login.guard';
+import { IndexGuard } from './guards/index.guard';
 import { routing } from './app.routing';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpModule, routing,Ng2PageScrollModule.forRoot()],
   declarations: [AppComponent, IndexComponent, LoginComponent, HeaderComponent, DataComponent, SearchComponent],
-  providers : [AuthService],
+  providers : [AuthService,LoginGuard,IndexGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
