@@ -5,8 +5,16 @@
 		</div>-->
 		<div id="sidebar-wrapper" class="sidebar-toggle"  style="overflow-y: scroll;">
 			<ul class="sidebar-nav">
-        <li><input type="text" (keyup)="search($event)" [(ngModel)]="company" name="searchstring" class="dropdown-toggle" data-toggle="dropdown" class="form-control" placeholder="Search"></li>
-        <li *ngFor="let name of names" [hidden] = "name.show"><a pageScroll href="#{{name.name}}">{{name.name}}</a></li>
+						<div class="input-group" style="width: 17%; position: fixed;">
+								<input type="text" class="dropdown-toggle" data-toggle="dropdown" (keyup)="search($event)" [(ngModel)]="company" name="searchstring" class="form-control" placeholder="Search">
+								<div class="input-group-btn">
+										<button class="btn btn-default">
+												<i class="glyphicon glyphicon-search "></i>
+										</button>
+								</div>
+						</div>
+				<li>_</li><!-- Dummy list item so that 1st element of list is not hidden -->
+				<li *ngFor="let name of names" [hidden] = "name.show"><a pageScroll href="#{{name.name}}">{{name.name}}</a></li>
 		  	</ul>
 		</div>
   	</div>
